@@ -1,2 +1,2 @@
 # desafioPratico
-aplicação Laravel
+CRUD Laravel para cadastro de clientes;
