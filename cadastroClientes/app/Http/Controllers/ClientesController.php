@@ -16,9 +16,9 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        return view('clientes.index');
+       $clientes = Cliente::all();
+       return view('clientes.index')->with('clientes',$clientes);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,7 +60,8 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('clientes.show')->with('cliente',$cliente);
     }
 
     /**
