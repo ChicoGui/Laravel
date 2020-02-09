@@ -110,6 +110,13 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        $cliente->delete();
+
+        Session::flash('flash_message', 'Cliente excluido!');
+
+        return redirect()->route('clientes.index');
+        
     }
 }

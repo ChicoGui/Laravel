@@ -11,7 +11,12 @@
 <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar cliente</a>
 
 <div class="pull-right">
-    <a href="#" class="btn btn-danger">excluir cliente</a>
+    {!! Form::open([
+            'method' => 'DELETE',
+            'route' => ['clientes.destroy', $cliente->id]
+        ]) !!}
+            {!! Form::submit('excluir cliente', ['class' => 'btn btn-danger']) !!}
+        {!! Form::close() !!}
 </div>
 
 @stop
