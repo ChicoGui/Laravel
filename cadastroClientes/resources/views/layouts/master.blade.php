@@ -14,7 +14,7 @@
       <a class="navbar-brand">Clientes</a>
     </div>
     <div class="nav navbar-nav navbar-right">
-        <li><a href="{{ url('home') }}">Home</a></li>
+        <li><a href="{{ url('/') }}">Home</a></li>
         <li><a href="{{ url('clientes') }}">Clientes</a></li>
     </div>
   </div>
