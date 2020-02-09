@@ -70,9 +70,12 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('clientes.edit')->with('cliente',$cliente);
+
     }
 
     /**
@@ -84,9 +87,21 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $cliente= Cliente::find($id);
 
+        $this->validate($request, [
+            'razaoSocial' => 'required',
+            'BolAtivo' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $cliente->fill($input)->save();
+
+        Session::flash('flash_message', 'cliente atualizado!');
+
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *
