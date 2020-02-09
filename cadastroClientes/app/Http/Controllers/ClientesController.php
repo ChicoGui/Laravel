@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Cliente;
+use Session;
+
 class ClientesController extends Controller
 {
     /**
@@ -22,10 +25,10 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-public function create()
-{
-    return view('clientes.create');
-}
+    public function create()
+    {
+        return view('clientes.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -34,9 +37,12 @@ public function create()
      */
     public function store(Request $request)
     {
-        //
-    }
 
+      $input = $request->all();
+      Cliente::create($input);
+      return redirect()->back();
+      
+    }
     /**
      * Display the specified resource.
      *
