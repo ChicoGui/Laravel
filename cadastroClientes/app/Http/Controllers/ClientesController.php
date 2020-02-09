@@ -35,14 +35,23 @@ class ClientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
+      $this->validate($request, [
+        'razaoSocial' => 'required',
+        'BolAtivo' => 'required'
+      ]);
 
       $input = $request->all();
+
       Cliente::create($input);
+
+      Session::flash('flash_message', 'Cliente cadastrado com sucesso!');
+
       return redirect()->back();
-      
     }
+
     /**
      * Display the specified resource.
      *
