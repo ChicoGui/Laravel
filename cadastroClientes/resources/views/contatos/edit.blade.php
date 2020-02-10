@@ -46,6 +46,10 @@
     {!! Form::text('TipoContato', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group">
+    {!! Form::label('IdCliente', 'Id Cliente:', ['class' => 'control-label']) !!}
+    {!! Form::text('IdCliente', null, ['class' => 'form-control']) !!}
+</div>
 
 <div class="form-group">
     {!! Form::label('DescContato', 'Descrição do contato:', ['class' => 'control-label']) !!}
@@ -66,4 +70,8 @@
 
 {!! Form::close() !!}
 
+
+<hr>
+
+<p class="lead"><a href="{{ route('clientes.index') }}">voltar para lista de clientes.</a></p>
 @stop

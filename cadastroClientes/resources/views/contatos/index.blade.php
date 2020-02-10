@@ -49,7 +49,7 @@
         @endif
     @endforeach
     </ul>
-     <hr>
+
 
 @endif
 @stop

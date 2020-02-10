@@ -6,7 +6,7 @@
 <h3>{{ $contato->DescContato}}</h3>
 <!--p class="lead">{{ $contato->BolAtivo }}</p-->
 criado em: {{ $contato->created_at->format('d/m/Y')}} || ultima atualização: {{ $contato->updated_at->format('d/m/Y H:i:s')}}
-
+<p class="lead">id Cliente: {{$contato->idCliente}}</p>
 <p class="lead">
 @if ($contato->BolAtivo === 1)
 	Satatus: Ativo

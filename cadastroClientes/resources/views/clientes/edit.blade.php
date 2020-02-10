@@ -52,7 +52,7 @@
 
 {!! Form::close() !!}
 
-
+<hr>
 
 <p class="lead"><a href="{{ route('clientes.index') }}">voltar para lista de clientes.</a></p>
 
