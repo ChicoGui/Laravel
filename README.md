@@ -15,11 +15,17 @@ composer install --no-scripts
 ```
 cp .env.example .env
 ```
-5. gerar nova chave pra aplicação;
+5. alterar arquivo.env
+```
+DB_DATABASE=desafiopratico
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+6. gerar nova chave pra aplicação;
 ```
 php artisan key:generate
 ```
-6. run migrations;
+7. run migrations;
 ```
 php artisan migrate --seed
 ```
