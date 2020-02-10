@@ -2,16 +2,46 @@
 
 @section('content')
 
-<h1>Lista de Clientes</h1>
-<p class="lead">todos os clientes. <a href="{{ route('clientes.create') }}">Adcionar novo cliente?</a></p>
+<h1>Clientes</h1>
+<p class="lead"><a href="{{ route('clientes.create') }}" class="btn btn-primary">novo cliente</a></p>
 <hr>
+
+@if(Session::has('flash_message'))
+    <div class="alert alert-success">
+        {{ Session::get('flash_message') }}
+    </div>
+@endif
+
+<h3>Ativos</h3>
 @foreach($clientes as $cliente)
-    <h3>{{ $cliente->razaoSocial }}</h3>
-    <p>{{ $cliente->bolAtivo}}</p>
-    <p>
-        <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info">detalhes</a>
-        <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar</a>
-    </p>
-    <hr>
+    @if ($cliente->BolAtivo === 1)
+       
+    <h4>{{ $cliente->razaoSocial }}</h4>
+    <div>
+        <a href="{{ route('clientes.show', $cliente->idCliente) }}" class="btn btn-info">detalhes</a>
+        <a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar</a>
+        <a href="{{ route('contatos.create') }}" class="btn btn-primary">criar contato</a>
+    </div>
+    @endif
 @endforeach
+
+<br><hr>
+
+<h3>Inativos</h3>
+@foreach($clientes as $cliente)
+    @if ($cliente->BolAtivo === 0)
+    <h4>{{ $cliente->razaoSocial }}</h4>
+    <div>
+        <a href="{{ route('clientes.show', $cliente->idCliente) }}" class="btn btn-info">detalhes</a>
+        <a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar</a>
+        <a href="" class="btn btn-primary">criar contato</a>
+    </div>
+    @endif
+@endforeach
+
+
+    <hr>
+   
+
 @stop
+

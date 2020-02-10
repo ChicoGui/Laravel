@@ -7,6 +7,8 @@
 <hr>
 
 <a href="{{ url('clientes') }}" class="btn btn-info">Ver clientes</a>
-<a href="{{ url('clientes/create') }}" class="btn btn-primary">Add novo cliente</a>
+<a href="{{ url('contatos') }}" class="btn btn-info">Ver contatos</a>
+<!--a href="{{ url('clientes/create') }}" class="btn btn-primary">Add novo cliente</a-->
+
 
 @stop

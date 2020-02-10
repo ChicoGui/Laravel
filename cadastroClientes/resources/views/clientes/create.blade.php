@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h1>Cadastrando cliente</h1>
-<p class="lead">Adicionar cliente.</p>
+<h1>Cadastro</h1>
+<p class="lead"></p>
 <hr>
 
 @if(Session::has('flash_message'))
@@ -25,17 +25,27 @@
 ]) !!}
 
 <div class="form-group">
-    {!! Form::label('razaoSocial', 'razaoSocial:', ['class' => 'control-label']) !!}
+    {!! Form::label('razaoSocial', 'Razão Social:', ['class' => 'control-label']) !!}
     {!! Form::text('razaoSocial', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
-    {!! Form::label('BolAtivo', 'BolAtivo:', ['class' => 'control-label']) !!}
-    {!! Form::text('BolAtivo', null, ['class' => 'form-control']) !!}
+    <div class="form-check form-check-inline">
+
+   {{ Form::radio('BolAtivo', 1) }} ativo
+   {{ Form::radio('BolAtivo', 0) }} inativo
+
+
+  </div>
 </div>
+
 
 {!! Form::submit('Cadastrar', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
 
+
+<hr>
+<p class="lead"><a href="{{ route('clientes.index') }}">voltar para lista de clientes.</a></p>
+<hr>
 @stop

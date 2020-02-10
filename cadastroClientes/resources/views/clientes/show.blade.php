@@ -3,20 +3,29 @@
 
 @section('content')
 
-<h1>{{ $cliente->razaoSocial }}</h1>
-<p class="lead">{{ $cliente->BolAtivo }}</p>
+<h3>{{ $cliente->razaoSocial }}</h3>
+<!--p class="lead">{{ $cliente->BolAtivo }}</p-->
+criado em: {{ $cliente->created_at->format('d/m/Y')}} || ultima atualização: {{ $cliente->updated_at->format('d/m/Y H:i:s')}}
+
+<p class="lead">
+@if ($cliente->BolAtivo === 1)
+	Satatus: Ativo
+@elseif ($cliente->BolAtivo === 0)
+    Status: inativo
+@endif
+</p>
 <hr>
 
-<a href="{{ route('clientes.index') }}" class="btn btn-info">lista de clientes</a>
-<a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar cliente</a>
+<hr>
 
-<div class="pull-right">
-    {!! Form::open([
-            'method' => 'DELETE',
-            'route' => ['clientes.destroy', $cliente->id]
-        ]) !!}
-            {!! Form::submit('excluir cliente', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
+<!-- <a href="{{ route('clientes.index') }}" class="btn btn-info">lista de clientes</a> -->
+<div>
+<a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar cliente</a>
+
 </div>
+
+
+
+<p class="lead"><a href="{{ route('clientes.index') }}">voltar para lista de clientes.</a></p>
 
 @stop

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Cliente;
+use App\Contato;
 use Session;
 
-class ClientesController extends Controller
+class ContatosClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,38 +15,40 @@ class ClientesController extends Controller
      */
     public function index()
     {
-       $clientes = Cliente::all();
-       return view('clientes.index')->with('clientes',$clientes);
+       $contatos = Contato::all();
+       return view('contatos.index')->with('contatos',$contatos);
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function create()
     {
-        return view('clientes.create');
+        return view('contatos.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function store(Request $request)
+  public function store(Request $request)
     {
       $this->validate($request, [
-        'razaoSocial' => 'required',
-        'BolAtivo' => 'required'
+        'TipoContato' => 'required',
+        'IdCliente'   => 'required',
+        'DescContato' => 'required',
+        'BolAtivo'    => 'required'
       ]);
 
       $input = $request->all();
 
-      Cliente::create($input);
+      Contato::create($input);
 
-      Session::flash('flash_message', 'Cliente cadastrado com sucesso!');
+      Session::flash('flash_message', 'contato add!');
 
       return redirect()->back();
     }
@@ -58,23 +59,21 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($IdCliente)
+    public function show($IdContato)
     {
-        $cliente = Cliente::find($idCliente);
-        return view('clientes.show')->with('cliente',$cliente);
+        $contato = Contato::find($IdContato);
+        return view('contatos.show')->with('contatos',$contato);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function edit($IdCliente)
+    public function edit($IdContato)
     {
-        $cliente = Cliente::find($idCliente);
-        return view('clientes.edit')->with('cliente',$cliente);
+        $contato = Contato::find($IdContato);
+        return view('contatos.edit')->with('contato',$contato);
 
     }
 
@@ -85,20 +84,23 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $IdCliente)
+    
+    public function update(Request $request, $IdContato)
     {
-        $cliente= Cliente::find($IdCliente);
+        $contato = Contato::find($IdContato);
 
         $this->validate($request, [
-            'razaoSocial' => 'required',
+            'TipoContato' => 'required',
+            'IdCliente' => 'required',
+            'DescContato' => 'required',
             'BolAtivo' => 'required'
         ]);
 
         $input = $request->all();
 
-        $cliente->fill($input)->save();
+        $contato->fill($input)->save();
 
-        Session::flash('flash_message', 'cliente atualizado!');
+        Session::flash('flash_message', 'Contato Cadastrado com Sucesso');
 
         return redirect()->back();
     }
@@ -108,15 +110,15 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($IdCliente)
+    public function destroy($IdContato)
     {
-        $cliente = Cliente::find($IdCliente);
+        $contato = Contato::find($IdContato);
 
-        $cliente->delete();
+        $contato->delete();
 
-        Session::flash('flash_message', 'Cliente excluido!');
+        Session::flash('flash_message', 'Cadastro excluido!');
 
-        return redirect()->route('clientes.index');
+        return redirect()->route('contatos.index');
         
     }
 }
