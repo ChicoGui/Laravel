@@ -12,35 +12,47 @@
     </div>
 @endif
 
-<h3>Ativos</h3>
-@foreach($clientes as $cliente)
-    @if ($cliente->BolAtivo === 1)
-       
-    <h4>{{ $cliente->razaoSocial }}</h4>
-    <div>
-        <a href="{{ route('clientes.show', $cliente->idCliente) }}" class="btn btn-info">detalhes</a>
-        <a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar</a>
-        <a href="{{ route('contatos.create') }}" class="btn btn-primary">criar contato</a>
-    </div>
-    @endif
-@endforeach
+@if (count($clientes) == 0)
+    <h3>Nenhum usuário cadastrado<h3>
+@else
 
-<br><hr>
+    <h3>Ativos</h3>
+    <ul class="list-group list-group-flush">
+    @foreach($clientes as $cliente)
+        @if ($cliente->BolAtivo === 1)
 
-<h3>Inativos</h3>
-@foreach($clientes as $cliente)
-    @if ($cliente->BolAtivo === 0)
-    <h4>{{ $cliente->razaoSocial }}</h4>
-    <div>
-        <a href="{{ route('clientes.show', $cliente->idCliente) }}" class="btn btn-info">detalhes</a>
-        <a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar</a>
-        <a href="" class="btn btn-primary">criar contato</a>
-    </div>
-    @endif
-@endforeach
+        <li class="list-group-item">
+           
+            <h4>{{ $cliente->razaoSocial }}</h4>            
+            <div>
+                <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info">detalhes</a>
+                <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </li>
+        @endif
+    @endforeach
+    </ul>
 
+    <br>
 
-    <hr>
+    <h3>Inativos</h3>
+    <ul class="list-group list-group-flush">
+    @foreach($clientes as $cliente)
+        @if ($cliente->BolAtivo === 0)
+
+        <li class="list-group-item">
+            <h4>{{ $cliente->razaoSocial }}</h4>
+            <div>
+                <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info">detalhes</a>
+                <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </li>
+        
+        @endif
+    @endforeach
+    </ul>
+
+@endif
    
 
 @stop

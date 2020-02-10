@@ -2,8 +2,23 @@
 
 @section('content')
 
-<h1>editar contato </h1>
-<p class="lead"> <a href="{{ route('contatos.index') }}">listar contatos.</a></p>
+
+<h1>Editar contato</h1>
+<h3> {{ $contato->DescContato}}</h3>
+
+<p class="lead">id Cliente: {{$contato->idCliente}}</p>
+
+<hr>
+
+<div class="pull-right">
+    {!! Form::open([
+            'method' => 'DELETE',
+            'route' => ['contatos.destroy', $contato->idContato]
+        ]) !!}
+            {!! Form::submit('excluir contato', ['class' => 'btn btn-danger']) !!}
+        {!! Form::close() !!}
+</div>
+
 <hr>
 
 @if(Session::has('flash_message'))
@@ -20,6 +35,7 @@
   </div>
 @endif
 
+
 {!! Form::model($contato, [
     'method' => 'PATCH',
     'route' => ['contatos.update', $contato->idContato]
@@ -30,10 +46,6 @@
     {!! Form::text('TipoContato', null, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('IdCliente', 'Id Cliente:', ['class' => 'control-label']) !!}
-    {!! Form::text('IdCliente', null, ['class' => 'form-control']) !!}
-</div>
 
 <div class="form-group">
     {!! Form::label('DescContato', 'Descrição do contato:', ['class' => 'control-label']) !!}
@@ -50,7 +62,7 @@
   </div>
 </div>
 
-{!! Form::submit('atualizar contato', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Atualizar contato', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
 

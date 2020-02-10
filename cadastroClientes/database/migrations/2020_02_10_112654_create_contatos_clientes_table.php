@@ -16,7 +16,7 @@ class CreateContatosClientesTable extends Migration
         Schema::create('ContatosClientes', function (Blueprint $table) {
             $table->increments('idContato');
             $table->integer('idCliente')->unsigned();
-            $table->foreign('idCliente')->references('idCliente')->on('clientes');
+            $table->foreign('idCliente')->references('id')->on('clientes')->onDelete('cascade');;
             $table->string('TipoContato');
             $table->string('DescContato');
             $table->integer('BolAtivo');

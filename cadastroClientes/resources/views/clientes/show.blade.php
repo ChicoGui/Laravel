@@ -16,13 +16,15 @@ criado em: {{ $cliente->created_at->format('d/m/Y')}} || ultima atualização: {
 </p>
 <hr>
 
-<hr>
+
 
 <!-- <a href="{{ route('clientes.index') }}" class="btn btn-info">lista de clientes</a> -->
 <div>
-<a href="{{ route('clientes.edit', $cliente->idCliente) }}" class="btn btn-primary">Editar cliente</a>
+<a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary">Editar cliente</a>
 
 </div>
+
+<hr>
 
 
 

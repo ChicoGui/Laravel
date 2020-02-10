@@ -7,7 +7,7 @@
 <div class="pull-right">
     {!! Form::open([
             'method' => 'DELETE',
-            'route' => ['clientes.destroy', $cliente->idCliente]
+            'route' => ['clientes.destroy', $cliente->id]
         ]) !!}
             {!! Form::submit('excluir cliente', ['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}
@@ -31,7 +31,7 @@
 
 {!! Form::model($cliente, [
     'method' => 'PATCH',
-    'route' => ['clientes.update', $cliente->idCliente]
+    'route' => ['clientes.update', $cliente->id]
 ]) !!}
 
 <div class="form-group">

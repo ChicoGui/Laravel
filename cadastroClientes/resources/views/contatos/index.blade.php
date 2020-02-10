@@ -13,31 +13,43 @@
     </div>
 @endif
 
-<h3>Ativos</h3>
-@foreach($contatos as $contato)
-    @if ($contato->BolAtivo === 1)
-       
-    <h4>{{ $contato->DescContato }}</h4>
-    <div>
-        <a href="{{ route('contatos.show', $contato->idContato) }}" class="btn btn-info">detalhes</a>
-        <a href="{{ route('contatos.edit', $contato->idContato) }}" class="btn btn-primary">Editar</a>
-    </div>
-    @endif
-@endforeach
+@if (count($contatos) == 0)
+    <h3>Nenhum contato cadastrado<h3>
+@else
+    
+    <h3>Ativos</h3>
+    <ul class="list-group list-group-flush">
+    @foreach($contatos as $contato)
+        @if ($contato->BolAtivo === 1)
+        
+        <li class="list-group-item">   
+            <h4>{{ $contato->DescContato }}</h4>
+            <div>
+                <a href="{{ route('contatos.show', $contato->idContato) }}" class="btn btn-info">detalhes</a>
+                <a href="{{ route('contatos.edit', $contato->idContato) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </li>
+        @endif
+    @endforeach
+    </ul>
 
-<br><hr>
+    <br>
 
-<h3>Inativos</h3>
-@foreach($contatos as $contato)
-    @if ($contato->BolAtivo === 0)
-       
-    <h4>{{ $contato->DescContato }}</h4>
-    <div>
-        <a href="{{ route('contatos.show', $contato->idContato) }}" class="btn btn-info">detalhes</a>
-        <a href="{{ route('contatos.edit', $contato->idContato) }}" class="btn btn-primary">Editar</a>
-        <a href="{{ route('contatos.create') }}" class="btn btn-primary">criar contato</a>
-    </div>
-    @endif
-@endforeach
- <hr>
+    <h3>Inativos</h3>
+    <ul class="list-group list-group-flush">
+    @foreach($contatos as $contato)
+        @if ($contato->BolAtivo === 0)
+        <li class="list-group-item">   
+            <h4>{{ $contato->DescContato }}</h4>
+            <div>
+                <a href="{{ route('contatos.show', $contato->idContato) }}" class="btn btn-info">detalhes</a>
+                <a href="{{ route('contatos.edit', $contato->idContato) }}" class="btn btn-primary">Editar</a>
+            </div>
+        </li>
+        @endif
+    @endforeach
+    </ul>
+     <hr>
+
+@endif
 @stop

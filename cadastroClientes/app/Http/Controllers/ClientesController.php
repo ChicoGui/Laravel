@@ -58,10 +58,14 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($IdCliente)
+    public function show($id)
     {
-        $cliente = Cliente::find($idCliente);
+        $cliente = Cliente::find($id);
         return view('clientes.show')->with('cliente',$cliente);
+      
+
+
+
     }
 
     /**
@@ -71,9 +75,9 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($IdCliente)
+    public function edit($id)
     {
-        $cliente = Cliente::find($idCliente);
+        $cliente = Cliente::find($id);
         return view('clientes.edit')->with('cliente',$cliente);
 
     }
@@ -85,9 +89,9 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $IdCliente)
+    public function update(Request $request, $id)
     {
-        $cliente= Cliente::find($IdCliente);
+        $cliente= Cliente::find($id);
 
         $this->validate($request, [
             'razaoSocial' => 'required',
@@ -108,9 +112,9 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($IdCliente)
+    public function destroy($id)
     {
-        $cliente = Cliente::find($IdCliente);
+        $cliente = Cliente::find($id);
 
         $cliente->delete();
 
